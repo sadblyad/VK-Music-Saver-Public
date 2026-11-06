@@ -1,0 +1,49 @@
+# Local credentials and browser state
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*cookie*
+*Cookie*
+*token*.json
+*credentials*
+*session*.json
+*storage-state*
+*storage_state*
+Login Data*
+Local State
+History*
+Web Data*
+Network/
+Default/
+Profile */
+profiles/
+.browser*/
+
+# Dependencies, downloads and diagnostics
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+work/
+.tmp/
+tmp/
+*.log
+*.har
+*.mp3
+*.m4a
+*.wav
+*.mp4
+*.webm
+*.zip
+*.crx
+.DS_Store
+Thumbs.db
+
+*.sqlite
+*.sqlite3
+*.db

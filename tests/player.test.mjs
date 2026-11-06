@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+import {allowsCommand} from '../security.js';
+const code=readFileSync(new URL('../background.js',import.meta.url),'utf8');
+const fn=code.slice(code.indexOf('function identifyPlayingTrack(){'),code.indexOf('async function startDownload('));
+const context={window:{ap:{ads:{isActive:false},getCurrentAudio:()=>[123,-200,'url','Title','Artist',180]}}};
+vm.createContext(context);vm.runInContext(fn+';globalThis.identify=identifyPlayingTrack',context);
+assert.equal(context.identify(),'-200_123');
+context.window.ap.getCurrentAudio=()=>({owner_id:101,id:202,access_key:'abc123'});assert.equal(context.identify(),'101_202_abc123');
+context.window.ap.getCurrentAudio=()=>({owner_id:77,id:99});assert.equal(context.identify(),'77_99');
+context.window.ap.ads.isActive=true;assert.throws(()=>context.identify());
+context.window.ap.ads.isActive=false;context.window.ap.getCurrentAudio=()=>null;assert.throws(()=>context.identify());
+for(const role of ['ui','worker','buffer',null])for(const type of ['player-download','player-size'])assert(!allowsCommand(role,type));
+assert(allowsCommand('vk','player-download'));assert(allowsCommand('vk','player-size'));
+console.log('PASS: current selection, changed track, access key, missing track, advertisement rejection and player command roles');

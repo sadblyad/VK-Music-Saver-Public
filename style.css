@@ -1,0 +1,128 @@
+
+:root{font:clamp(15px,calc(13px + .125vw),18px)/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#e1e3e6;background:#141414;color-scheme:dark;--panel:#222;--border:#363738;--muted:#939393;--accent:#71aaeb}
+*{box-sizing:border-box}body{font:inherit;margin:0;padding:clamp(20px,5vw,64px) max(12px,env(safe-area-inset-right,0px)) 32px}main{width:100%;max-width:54rem;margin:0 auto}header{padding:clamp(20px,3vw,2rem);background:var(--panel);border:1px solid var(--border);border-radius:12px}small{font-size:.8rem;font-weight:600;color:var(--muted);letter-spacing:1.1px}h1{font-size:clamp(1.65rem,2vw,1.85rem);line-height:1.25;margin:12px 0}header>p{color:#aaa;margin:0 0 24px}label{display:block;font-weight:500;margin-bottom:8px}.input-row{display:flex;align-items:stretch;gap:10px;min-width:0}input{display:block;min-width:0;flex:1;width:100%;height:3rem;padding:.65rem .8rem;border:1px solid #4a4a4a;border-radius:8px;background:#333;color:#e1e3e6;font:inherit;font-size:1rem}input::placeholder{color:#939393}input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}button{border:0;border-radius:8px;font:inherit;font-size:1rem;font-weight:500;cursor:pointer;background:#3a3a3a;color:#e1e3e6;padding:8px 12px;min-height:2.5rem;white-space:nowrap}button:hover{background:#464646}button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}button:disabled{opacity:.5;cursor:wait}button[hidden]{display:none!important}#start{background:#e1e3e6;color:#222;padding-inline:24px;font-weight:600;min-height:3rem}#start:hover{background:#fff}.hint{font-size:.8125rem;color:var(--muted);overflow-wrap:anywhere;margin:8px 0 0}#status{margin:18px 0 0;color:#aaa;font-size:.9rem;overflow-wrap:anywhere}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0 12px}h2{font-size:1.125rem;margin:0;font-weight:600}.text-button{background:transparent;color:var(--accent);padding:6px 8px;white-space:normal}.text-button:hover{background:#ffffff08}.job{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;padding:16px 20px;margin:8px 0;border:1px solid var(--border);border-radius:10px;background:var(--panel)}.job-body{min-width:0}.job strong{display:block;font-size:1rem;line-height:1.5;font-weight:500;overflow-wrap:anywhere}.meta{font-size:.9rem;color:var(--muted);margin:4px 0 0;overflow-wrap:anywhere}.job[data-state=error] .meta{color:#e99595}.job-actions{display:flex;align-items:center;gap:6px;align-self:start;flex-wrap:wrap}.job-log{grid-column:1/-1;margin:0}.job-log summary{color:var(--muted);font-size:.8125rem;cursor:pointer;width:fit-content}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:.8125rem/1.6 ui-monospace,Consolas,monospace;color:#aaa;margin:10px 0 0}details.help{border-top:1px solid var(--border);margin-top:24px;padding-top:16px;color:var(--muted)}.help summary{cursor:pointer;font-size:.9rem}.help p{max-width:75ch}.empty{color:var(--muted);padding:24px 16px;text-align:center;background:var(--panel);border:1px dashed var(--border);border-radius:10px;font-size:.9rem}
+@media(max-width:600px){.job{grid-template-columns:minmax(0,1fr);padding:14px 16px;gap:10px}.job-actions{justify-content:flex-start}.job-log{grid-column:1}.section-heading{align-items:flex-start}.input-row{flex-direction:column}#start{width:100%}header{border-radius:10px}.section-heading .text-button{max-width:55%;text-align:right}input{font-size:1rem}}
+
+.copyright{margin-top:32px;padding:16px 0 0;text-align:center;font-size:.8125rem;line-height:1.6;color:var(--muted);overflow-wrap:anywhere}
+
+body{min-height:100dvh;display:flex;flex-direction:column}main{position:relative;flex:1 0 auto}.copyright{flex-shrink:0;margin-top:40px;padding:16px 0 0}
+.settings-anchor{position:absolute;top:0;left:-3.5rem;z-index:10}.settings-gear{display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;padding:0;color:var(--muted);background:var(--panel);border:1px solid var(--border)}.settings-gear svg{display:block;width:1.375rem;height:1.375rem}
+.settings-panel{position:absolute;top:calc(3rem + 8px);left:0;width:min(20rem,calc(100vw - 24px));padding:1.125rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 28px #0003}.settings-panel[hidden]{display:none}.settings-panel h2{margin-bottom:16px}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:16px 0 0;font-weight:400}.setting-row span{min-width:0}.setting-row input{appearance:none;flex:0 0 2.5rem;width:2.5rem;height:1.5rem;min-width:2.5rem;padding:0;border:0;border-radius:20px;background:#666;cursor:pointer;position:relative;transition:background .15s}.setting-row input:before{content:"";position:absolute;width:1.125rem;height:1.125rem;top:.1875rem;left:.1875rem;border-radius:50%;background:white;transition:transform .15s}.setting-row input:checked{background:var(--accent)}.setting-row input:checked:before{transform:translateX(1rem)}
+:root[data-theme=light]{color:#222;background:#edeef0;color-scheme:light;--panel:#fff;--border:#dce1e6;--muted:#818c99;--accent:#447bba}
+:root[data-theme=light] header>p,:root[data-theme=light] #status,:root[data-theme=light] pre{color:#626d7a}
+:root[data-theme=light] input:not([role=switch]){background:#f5f6f8;color:#222;border-color:#d3d9de}
+:root[data-theme=light] button{background:#e5ebf1;color:#2a5885}:root[data-theme=light] button:hover{background:#dce4ed}:root[data-theme=light] #start{background:#447bba;color:#fff}:root[data-theme=light] #start:hover{background:#396ba2}
+@media(max-width:1100px){main{padding-top:3.25rem}.settings-anchor{left:0}}
+@media(prefers-reduced-motion:reduce){.setting-row input,.setting-row input:before{transition:none}}
+
+.page-notices{position:fixed;top:max(16px,env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));width:min(360px,calc(100vw - 32px));display:flex;flex-direction:column;gap:10px;max-height:calc(100dvh - 32px);overflow:auto;scrollbar-width:none;z-index:100;pointer-events:none}.page-notices::-webkit-scrollbar{display:none}
+.page-notice{display:flex;align-items:center;gap:12px;padding:14px 12px 14px 16px;border:1px solid var(--border);border-radius:12px;background:rgba(41,41,41,.4);backdrop-filter:blur(10px);box-shadow:0 4px 24px #0003;font:14px/1.45 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#e1e3e6;pointer-events:auto;animation:page-notice-in .18s ease-out;transition:opacity .18s ease,transform .18s ease;flex-shrink:0}.page-notice-mark{display:flex;align-items:center;justify-content:center;flex:0 0 26px;height:26px;border-radius:50%;background:#ffffff0d;color:#9ac8a8}.page-notice-mark svg{display:block}.page-notice-text{flex:1;min-width:0;overflow-wrap:anywhere}.page-notice .page-notice-close{display:flex;align-items:center;justify-content:center;flex:0 0 28px;width:28px;height:28px;min-height:0;padding:0;background:transparent;color:#939393;font:24px/1 system-ui;border-radius:6px}.page-notice .page-notice-close:hover{background:#ffffff0d;color:inherit}.page-notice[data-kind=error]{background:rgba(76,36,45,.4);border-color:#e2708b66;color:#f8dce3}.page-notice[data-kind=error] .page-notice-mark{background:#f489a21f;color:#f49bb1}.page-notice.leaving{animation:none;opacity:0;transform:translateX(calc(100% + 24px));pointer-events:none}
+:root[data-theme=light] .page-notice{background:rgba(255,255,255,.4);color:#222}:root[data-theme=light] .page-notice-mark{background:#0000000a;color:#66a879}:root[data-theme=light] .page-notice[data-kind=error]{background:rgba(255,237,242,.4);color:#8a354c}:root[data-theme=light] .page-notice[data-kind=error] .page-notice-mark{color:#c44b6d}
+@keyframes page-notice-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.page-notice{animation:none;transition:none}}
+
+/* Leave room for notice borders/shadows and avoid cropping the entrance animation. */
+.page-notices{padding:8px;margin:-8px;width:min(376px,calc(100vw - 16px));box-sizing:border-box;overflow-x:hidden;overflow-y:auto}
+.page-notice{overflow:visible;min-height:min-content}
+.page-notice[data-kind=test]{background:rgba(105,39,55,.35);border-color:rgba(235,126,151,.4);color:#ffe3ea}
+.page-notice[data-kind=test] .page-notice-mark{background:rgba(244,137,162,.18);color:#ffb1c4}
+.page-notice[data-kind=test] .page-notice-close{color:#e8a9ba}
+:root[data-theme=light] .page-notice[data-kind=test]{background:rgba(255,207,219,.4);border-color:rgba(196,71,105,.55);color:#812d44}
+:root[data-theme=light] .page-notice[data-kind=test] .page-notice-mark{background:rgba(196,71,105,.12);color:#ba365b}
+
+.test-tag{display:inline!important;white-space:nowrap;color:#f16d88;font-size:.85em;font-weight:500}
+.experimental-setting{position:relative}
+.setting-tooltip{position:absolute;left:0;top:calc(100% + 8px);width:min(280px,calc(100vw - 48px));padding:9px 12px;background:var(--panel);color:inherit;border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 18px #0003;font-size:.8125rem;line-height:1.5;z-index:20;visibility:hidden;opacity:0;pointer-events:none}
+.experimental-setting:hover .setting-tooltip,.experimental-setting:focus-within .setting-tooltip{visibility:visible;opacity:1}
+:root[data-theme=light] .test-tag{color:#c73d5b}
+
+/* Subtle translucency for settings, less transparent than notifications. */
+.settings-panel{background:rgba(34,34,34,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+:root[data-theme=light] .settings-panel{background:rgba(255,255,255,.6)}
+/* Cover the small gap so moving from the gear into its menu stays seamless. */
+.settings-panel::before{content:"";position:absolute;left:0;right:0;top:calc(-.6rem - 8px);height:calc(.6rem + 8px)}
+
+.settings-panel:not([hidden]){animation:none;opacity:0;transform:translateY(-6px);transform-origin:top left;transition:opacity .22s ease-out,transform .22s cubic-bezier(.2,.7,.2,1)}
+.settings-panel.is-open:not([hidden]){opacity:1;transform:translateY(0)}
+.settings-panel.is-closing{pointer-events:none;transition-duration:.18s}
+@keyframes settings-menu-in{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.settings-panel:not([hidden]){animation:none}}
+
+.settings-gear{border:0;border-radius:50%;background:rgba(128,128,128,.08);transition:background .15s,color .15s}
+.settings-gear:hover,.settings-gear[aria-expanded=true]{background:rgba(128,128,128,.16);color:#e1e3e6}
+:root[data-theme=light] .settings-gear{background:rgba(0,0,0,.035);color:var(--muted)}
+:root[data-theme=light] .settings-gear:hover,:root[data-theme=light] .settings-gear[aria-expanded=true]{background:rgba(0,0,0,.075);color:#447bba}
+@media(prefers-reduced-motion:reduce){.settings-panel:not([hidden]),.settings-gear{transition:none}}
+
+/* Bare VK-style sidebar icon, including hover and expanded states. */
+.settings-gear,.settings-gear:hover,.settings-gear[aria-expanded=true],
+:root[data-theme=light] .settings-gear,:root[data-theme=light] .settings-gear:hover,:root[data-theme=light] .settings-gear[aria-expanded=true]{background:transparent;box-shadow:none;border:0;color:var(--accent)}
+
+.settings-gear{opacity:1;transition:opacity .18s ease,color .15s ease}
+.settings-gear:hover{opacity:.65}
+@media(prefers-reduced-motion:reduce){.settings-gear{transition:none}}
+
+/* A growing menu scrolls internally while its heading stays visible. */
+.settings-panel{width:min(22rem,calc(100vw - 24px));max-height:var(--settings-available-height,70dvh);padding-bottom:0}
+.settings-items{max-height:calc(var(--settings-available-height,70dvh) - 4.5rem);overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--muted) transparent;padding:0 2px 1.125rem}
+.settings-items>.setting-row:first-child{margin-top:0}
+.settings-items .setting-row{gap:16px;min-height:2.5rem;margin-top:12px;line-height:1.45}
+.settings-items .setting-tooltip{top:auto;bottom:calc(100% + 6px);width:100%;max-width:100%}
+@media(max-width:1100px){.settings-anchor{top:0}}
+
+/* Position the description outside the scrollable menu without changing its surface. */
+.setting-tooltip.detached{position:fixed;top:auto;bottom:auto;left:auto;width:280px;max-width:calc(100vw - 24px)}
+
+.setting-tooltip.detached.tip-visible{visibility:visible;opacity:1}
+
+/* High-contrast description, softened with translucent surfaces and strokes. */
+.setting-tooltip.detached{background:rgba(0,0,0,.88);color:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.55);box-shadow:0 4px 18px rgba(0,0,0,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* Experimental description uses the approved monochrome tooltip, slightly more transparent. */
+#adblock-tip.setting-tooltip.detached{background:rgba(12,12,14,.55);color:rgba(255,255,255,.94);border:0.5px solid rgba(255,255,255,.28);border-radius:9px;font-style:italic;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 16px rgba(0,0,0,.2)}
+
+/* Flat translucent description: no raised edges, shadows or text embossing. */
+#adblock-tip.setting-tooltip.detached{background:rgba(12,12,14,.65);box-shadow:none;text-shadow:none;filter:none}
+#adblock-tip.setting-tooltip.detached::before,#adblock-tip.setting-tooltip.detached::after{content:none;display:none}
+
+#adblock-tip.setting-tooltip.detached{background:rgba(20,20,20,.1);border:1px solid #fff;box-shadow:none;text-shadow:none}
+:root[data-theme=light] #adblock-tip.setting-tooltip.detached{background:rgba(237,238,240,.1)}
+
+#adblock-tip.setting-tooltip.detached{border:0}
+
+/* Separate the description from VK's neutral gray without a frame or shadow. */
+#adblock-tip.setting-tooltip.detached{background:rgba(22,25,30,.86);color:rgba(225,227,230,.9);border:0;box-shadow:none;text-shadow:none}
+:root[data-theme=light] #adblock-tip.setting-tooltip.detached{background:rgba(230,233,238,.93);color:rgba(36,44,55,.9)}
+
+#adblock-tip.setting-tooltip.detached::before{content:"";display:block;position:absolute;top:var(--tip-arrow-y,50%);left:-9px;width:5px;height:5px;border-top:1px solid rgba(225,227,230,.38);border-right:1px solid rgba(225,227,230,.38);transform:translateY(-50%) rotate(45deg);pointer-events:none}
+#adblock-tip.setting-tooltip.detached[data-side=left]::before{left:auto;right:-9px;transform:translateY(-50%) rotate(225deg)}
+#adblock-tip.setting-tooltip.detached[data-side=vertical]::before{display:none}
+:root[data-theme=light] #adblock-tip.setting-tooltip.detached::before{border-color:rgba(36,44,55,.38)}
+
+#adblock-tip.setting-tooltip.detached::before{content:"→";display:block;left:-12px;width:12px;height:18px;border:0;background:none;color:rgba(225,227,230,.5);font:14px/18px system-ui;text-align:center;transform:translateY(-50%)}
+#adblock-tip.setting-tooltip.detached[data-side=left]::before{content:"←";left:auto;right:-12px;transform:translateY(-50%)}
+#adblock-tip.setting-tooltip.detached[data-side=vertical]::before{display:none}
+:root[data-theme=light] #adblock-tip.setting-tooltip.detached::before{color:rgba(36,44,55,.5)}
+.tooltip-last-line{display:block;white-space:nowrap}
+@media(max-width:320px){.tooltip-last-line{white-space:normal}}
+
+/* This experimental description uses the existing error palette. */
+#adblock-tip.setting-tooltip.detached{background:rgba(76,36,45,.4);color:#f8dce3;font-style:normal;font-weight:400;border:1px solid rgba(226,112,139,.4);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+:root[data-theme=light] #adblock-tip.setting-tooltip.detached{background:rgba(255,237,242,.4);color:#8a354c;border-color:rgba(196,71,105,.25)}
+#adblock-tip.setting-tooltip.detached::before,#adblock-tip.setting-tooltip.detached::after{content:none;display:none}
+
+/* VK sidebar rhythm: blue icon, 12px gap and a neutral text label. */
+.settings-anchor{left:-10rem}
+.settings-gear{width:auto;justify-content:flex-start;gap:12px;padding:0 4px;border-radius:0}
+.settings-gear svg{width:20px;height:20px;flex-shrink:0}
+.settings-label{color:#e1e3e6;font-size:.9rem;font-weight:400;line-height:1.4}
+:root[data-theme=light] .settings-label{color:#222}
+@media(max-width:1279px){main{padding-top:3.25rem}.settings-anchor{left:0;top:0}}
+
+/* Match VK's sidebar/content spacing without tying it to the font size. */
+@media(min-width:1280px){
+  .settings-anchor{left:auto;right:calc(100% + 20px);width:164px}
+  .settings-gear{width:100%;padding-inline:8px;gap:12px;min-height:30px;height:30px}
+}
+
+.settings-panel[data-placement=right]::before{left:-12px;right:auto;top:0;width:12px;height:100%}

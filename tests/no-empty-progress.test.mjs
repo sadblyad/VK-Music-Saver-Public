@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+const code=readFileSync(new URL('../content.js',import.meta.url),'utf8');
+const fn=code.slice(code.indexOf('  function updateSpeed(message){'),code.indexOf('  chrome.runtime.onMessage.addListener'));
+const states=new Map();let renders=0;
+const context={DOWNLOAD_SPEED_PANEL_ENABLED:true,hiddenSpeeds:new Set(),speedStates:states,performance:{now:()=>1000},renderSpeed:()=>renders++,clearTimeout,setTimeout,closeSpeed:key=>states.delete(key)};
+vm.createContext(context);vm.runInContext(fn+';globalThis.run=updateSpeed',context);
+context.run({token:'deleted',bytes:0,total:0});assert.equal(states.size,0);assert.equal(renders,0);
+context.run({token:'real',bytes:1024,total:4096});assert.equal(states.size,1);assert.equal(states.get('real').bytes,1024);assert.equal(renders,1);
+assert(!code.includes('updateSpeed({token,bytes:0,total:0})'));
+console.log('PASS: zero bytes create no card; actual received bytes create progress; no eager card on click');

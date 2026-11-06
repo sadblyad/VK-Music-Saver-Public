@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "VK Music Saver",
+  "version": "1.6.0",
+  "description": "Скачать трек по ссылке ВК или кнопкой рядом с песней. Без отдельного входа.",
+  "minimum_chrome_version": "120",
+  "permissions": [
+    "downloads",
+    "storage",
+    "scripting",
+    "offscreen",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+    "https://vk.ru/*",
+    "https://vk.com/*",
+    "https://*.vkuseraudio.ru/*",
+    "https://*.vkuseraudio.net/*",
+    "https://*.vkuseraudio.com/*",
+    "https://www.vk.ru/*",
+    "https://www.vk.com/*",
+    "https://m.vk.ru/*",
+    "https://m.vk.com/*",
+    "https://r.mradx.net/*"
+  ],
+  "action": {
+    "default_title": "Скачать музыку ВК",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://vk.ru/*",
+        "https://vk.com/*",
+        "https://m.vk.ru/*",
+        "https://m.vk.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self' https://vk.ru https://vk.com https://*.vkuseraudio.ru https://*.vkuseraudio.net https://*.vkuseraudio.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+  },
+  "version_name": "1.6.0 beta"
+}

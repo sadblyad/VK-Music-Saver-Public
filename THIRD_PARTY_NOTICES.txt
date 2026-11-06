@@ -1,0 +1,8 @@
+VK URL encoding and decoding protocol research:
+vk_api — https://github.com/python273/vk_api
+Copyright (c) 2019 python273 and contributors.
+Licensed under the Apache License, Version 2.0.
+The accompanying LICENSE-APACHE-2.0.txt contains the license text.
+
+This extension implements its own browser-side resolver, UI and download pipeline.
+No third-party executable JavaScript is bundled or fetched at runtime.

@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {audioSize} from '../core.js';
+const url='https://cdn.vkuseraudio.ru/a.mp3';let calls=0;
+assert.equal(await audioSize(url,{fetcher:async(u,o)=>{calls++;assert.equal(o.method,'HEAD');assert.equal(o.redirect,'follow');assert.equal(o.credentials,'omit');return new Response(null,{headers:{'Content-Length':'4526541','Content-Type':'audio/mpeg'}});}}),4526541);assert.equal(calls,1);
+calls=0;
+assert.equal(await audioSize(url,{fetcher:async(u,o)=>{calls++;if(o.method==='HEAD')return new Response(null,{status:405});assert.equal(o.headers.Range,'bytes=0-0');return new Response(new Uint8Array([1]),{status:206,headers:{'Content-Range':'bytes 0-0/8403113','Content-Length':'1','Content-Type':'audio/mpeg'}});}}),8403113);assert.equal(calls,2);
+await assert.rejects(()=>audioSize(url,{fetcher:async()=>new Response('<html>error</html>',{headers:{'Content-Type':'text/html'}})}));
+await assert.rejects(()=>audioSize('https://evil.example/a.mp3'));
+await assert.rejects(()=>audioSize(url,{fetcher:async(u,o)=>o.method==='HEAD'?new Response(null,{status:405}):new Response(null,{status:206,headers:{'Content-Length':'1'}})}));
+console.log('PASS: size via HEAD, ranged fallback uses full size instead of 1 byte, HTML/unknown size/host rejected');
+calls=0;
+assert.equal(await audioSize(url,{fetcher:async(u,o)=>{calls++;if(o.method==='HEAD')throw new TypeError('HEAD network error');return new Response(new Uint8Array([1]),{status:206,headers:{'Content-Range':'bytes 0-0/1234567'}});}}),1234567);
+assert.equal(calls,2);
+console.log('PASS: network failure on HEAD still falls back to a ranged request');

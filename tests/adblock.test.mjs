@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {audioAdRules,setAudioAdBlock,AUDIO_AD_RULE_ID} from '../adblock.js';
+const rule=audioAdRules(true)[0],matches=new RegExp(rule.condition.regexFilter);
+assert(matches.test('https://r.mradx.net/audio/00/example.mp3'));
+for(const u of ['https://r.mradx.net.evil.com/audio/a.mp3','https://r.mradx.net/banner/a','https://cdn.vkuseraudio.ru/song.mp3','https://vk.ru/music'])assert(!matches.test(u));
+assert.deepEqual(rule.condition.initiatorDomains,['vk.ru','vk.com']);assert.deepEqual(rule.condition.resourceTypes,['media']);
+const calls=[];const api={declarativeNetRequest:{updateDynamicRules:async v=>calls.push(v)},storage:{local:{set:async v=>calls.push(v)}}};
+await setAudioAdBlock(true,api);await setAudioAdBlock(false,api);
+assert.equal(calls[0].addRules.length,1);assert.deepEqual(calls[2],{removeRuleIds:[AUDIO_AD_RULE_ID],addRules:[]});assert.deepEqual(calls[3],{audioAdBlockTest:false});
+let saved=false;await assert.rejects(()=>setAudioAdBlock(true,{declarativeNetRequest:{updateDynamicRules:async()=>{throw Error('Denied')}},storage:{local:{set:async()=>{saved=true}}}}));assert.equal(saved,false);
+console.log('PASS: narrow ad URL, VK initiators, media only, enable/disable, failed rule does not save enabled setting');
